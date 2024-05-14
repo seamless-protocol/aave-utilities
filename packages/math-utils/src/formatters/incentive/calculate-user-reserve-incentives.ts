@@ -56,7 +56,6 @@ export function calculateUserReserveIncentives({
               userIndex: new BigNumber(
                 userReserveIncentive.tokenIncentivesUserIndex,
               ),
-              precision: reserveIncentive.precision,
               reserveIndexTimestamp:
                 reserveIncentive.incentivesLastUpdateTimestamp,
               emissionPerSecond: new BigNumber(
@@ -114,7 +113,6 @@ export function calculateUserReserveIncentives({
               userIndex: new BigNumber(
                 userReserveIncentive.tokenIncentivesUserIndex,
               ),
-              precision: reserveIncentive.precision,
               reserveIndexTimestamp:
                 reserveIncentive.incentivesLastUpdateTimestamp,
               emissionPerSecond: new BigNumber(
@@ -168,7 +166,6 @@ export function calculateUserReserveIncentives({
               userIndex: new BigNumber(
                 userReserveIncentive.tokenIncentivesUserIndex,
               ),
-              precision: reserveIncentive.precision,
               reserveIndexTimestamp:
                 reserveIncentive.incentivesLastUpdateTimestamp,
               emissionPerSecond: new BigNumber(

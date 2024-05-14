@@ -50,13 +50,13 @@ describe('calculateUserReserveIncentives', () => {
     result.forEach(reward => {
       total = total.plus(reward.accruedRewards);
     });
-    expect(normalize(total, 18)).toBe('300000000000'); // 1 from deposit + 2 from variableDebt
+    expect(normalize(total, 18)).toBe('300'); // 1 from deposit + 2 from variableDebt
     const aReward = result.find(
       reward =>
         reward.tokenAddress === '0x0000000000000000000000000000000000000000',
     );
     if (aReward) {
-      expect(normalize(aReward.accruedRewards, 18)).toBe('100000000000'); // 1 from deposit
+      expect(normalize(aReward.accruedRewards, 18)).toBe('100'); // 1 from deposit
     }
   });
 

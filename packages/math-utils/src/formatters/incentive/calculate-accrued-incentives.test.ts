@@ -39,7 +39,6 @@ describe('calculateAccruedIncentives', () => {
     userIndex: new BigNumber(
       userIncentiveMock.userIncentive.aTokenIncentivesUserData.userRewardsInformation[0].tokenIncentivesUserIndex,
     ),
-    precision: 18,
     reserveIndexTimestamp:
       reserveIncentiveMock.reserveIncentive.aIncentiveData
         .rewardsTokenInformation[0].incentivesLastUpdateTimestamp,
@@ -63,7 +62,6 @@ describe('calculateAccruedIncentives', () => {
     userIndex: new BigNumber(
       userIncentiveMock.userIncentive.vTokenIncentivesUserData.userRewardsInformation[0].tokenIncentivesUserIndex,
     ),
-    precision: 18,
     reserveIndexTimestamp:
       reserveIncentiveMock.reserveIncentive.vIncentiveData
         .rewardsTokenInformation[0].incentivesLastUpdateTimestamp,
@@ -87,7 +85,6 @@ describe('calculateAccruedIncentives', () => {
     userIndex: new BigNumber(
       userIncentiveMock.userIncentive.sTokenIncentivesUserData.userRewardsInformation[0].tokenIncentivesUserIndex,
     ),
-    precision: 18,
     reserveIndexTimestamp:
       reserveIncentiveMock.reserveIncentive.sIncentiveData
         .rewardsTokenInformation[0].incentivesLastUpdateTimestamp,
@@ -103,15 +100,15 @@ describe('calculateAccruedIncentives', () => {
 
   it('should calculate the correct deposit rewards', () => {
     const result = calculateAccruedIncentives(depositRewardsRequest);
-    expect(normalize(result, 18)).toBe('100000000000');
+    expect(normalize(result, 18)).toBe('100');
   });
   it('should calculate the correct deposit rewards when running ahead', () => {
     const result = calculateAccruedIncentives(depositRewardsRequest);
-    expect(normalize(result, 18)).toBe('100000000000');
+    expect(normalize(result, 18)).toBe('100');
   });
   it('should calculate the correct variable debt rewards', () => {
     const result = calculateAccruedIncentives(variableDebtRewardsRequest);
-    expect(normalize(result, 18)).toBe('200000000000');
+    expect(normalize(result, 18)).toBe('200');
   });
   it('should calculate the correct stable debt rewards', () => {
     const result = calculateAccruedIncentives(stableDebtRewardsRequest);

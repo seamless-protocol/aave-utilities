@@ -4,13 +4,14 @@ export interface CalculateAccruedIncentivesRequest {
   principalUserBalance: BigNumber; // principal deposit or borrow amount
   reserveIndex: BigNumber; // tracks the interest earned by a reserve
   userIndex: BigNumber; // tracks the interest earned by a user from a particular reserve
-  precision: number; // decimal precision of rewards calculation
   reserveIndexTimestamp: number; // timestamp of last protocol interaction
   emissionPerSecond: BigNumber;
   totalSupply: BigNumber; // total deposits or borrows of a reserve
   currentTimestamp: number;
   emissionEndTimestamp: number;
 }
+
+const PRECISION = 27;
 
 // Calculate incentives earned by user since reserveIndexTimestamp
 // Incentives earned before reserveIndexTimestamp are tracked separately (userUnclaimedRewards from UiIncentiveDataProvider)
@@ -19,7 +20,6 @@ export function calculateAccruedIncentives({
   principalUserBalance,
   reserveIndex,
   userIndex,
-  precision,
   reserveIndexTimestamp,
   emissionPerSecond,
   totalSupply,
@@ -46,14 +46,14 @@ export function calculateAccruedIncentives({
   } else {
     currentReserveIndex = emissionPerSecond
       .multipliedBy(timeDelta)
-      .shiftedBy(precision)
+      .shiftedBy(PRECISION)
       .dividedBy(totalSupply)
       .plus(reserveIndex);
   }
 
   const reward = principalUserBalance
     .multipliedBy(currentReserveIndex.minus(userIndex))
-    .shiftedBy(precision * -1);
+    .shiftedBy(PRECISION * -1);
 
   return reward;
 }
